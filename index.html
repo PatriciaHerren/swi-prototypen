@@ -5,75 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SWI Prototypen – Übersicht</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #f8f8f8;
-    color: #111;
-    min-height: 100vh;
-    padding: 40px 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .header {
-    margin-bottom: 32px;
-  }
-  .header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .header p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-  }
-  .proto-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .proto-link {
-    display: block;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-left: 4px solid #af001d;
-    padding: 16px 18px;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 4px;
-    transition: box-shadow 0.15s;
-  }
-  .proto-link:active {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-  }
-  .proto-link .name {
-    font-size: 16px;
-    font-weight: 600;
-    color: #111;
-    margin-bottom: 4px;
-  }
-  .proto-link .desc {
-    font-size: 13px;
-    color: #777;
-    line-height: 1.4;
-  }
-  .proto-link .tag {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #af001d;
-    background: #fdf0f2;
-    padding: 2px 8px;
-    border-radius: 3px;
-  }
-  .footer {
-    margin-top: 40px;
-    font-size: 12px;
-    color: #aaa;
-    text-align: center;
-  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f8f8;color:#111;min-height:100vh;padding:40px 20px;max-width:600px;margin:0 auto}
+  .header{margin-bottom:32px}
+  .header h1{font-size:22px;font-weight:700;margin-bottom:6px}
+  .header p{font-size:14px;color:#666;line-height:1.5}
+  .section-label{font-size:12px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:1px;margin:24px 0 10px;padding-left:2px}
+  .proto-list{display:flex;flex-direction:column;gap:12px}
+  .proto-link{display:block;background:#fff;border:1px solid #e0e0e0;border-left:4px solid #af001d;padding:16px 18px;text-decoration:none;color:inherit;border-radius:4px;transition:box-shadow .15s}
+  .proto-link:active{box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .proto-link .name{font-size:16px;font-weight:600;color:#111;margin-bottom:4px}
+  .proto-link .desc{font-size:13px;color:#777;line-height:1.4}
+  .proto-link .tag{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;color:#af001d;background:#fdf0f2;padding:2px 8px;border-radius:3px}
+  .footer{margin-top:40px;font-size:12px;color:#aaa;text-align:center}
 </style>
 </head>
 <body>
@@ -83,24 +27,32 @@
   <p>Usability-Test-Prototypen für das Serien-Projekt auf SWI swissinfo.ch</p>
 </div>
 
+<div class="section-label">Übersichtsseiten</div>
 <div class="proto-list">
-
-  <a class="proto-link" href="swi-usability-test-prototyp.html">
-    <div class="name">Artikelseite Mobile – Serien-Teaser</div>
-    <div class="desc">Mobile Artikelseite (390px) mit interaktivem Serien-Teaser-Block. Cards sind swipebar. Folgen-Button funktional.</div>
-    <span class="tag">Mobile · Interaktiv</span>
-  </a>
-
-  <!-- Weitere Prototypen hier einfügen: 
-  
-  <a class="proto-link" href="dateiname.html">
-    <div class="name">Titel des Prototyps</div>
-    <div class="desc">Kurze Beschreibung was testbar ist.</div>
+  <a class="proto-link" href="serien-uebersicht.html">
+    <div class="name">Alle Serien – Übersicht</div>
+    <div class="desc">Übersichtsseite mit allen Serien. Gletscher der Welt und CEO Spotlight sind verlinkt.</div>
     <span class="tag">Mobile · Statisch</span>
   </a>
-  
-  -->
+  <a class="proto-link" href="serie-gletscher.html">
+    <div class="name">Serie: Gletscher der Welt</div>
+    <div class="desc">Serien-Detailseite (Limited Serie, 5 Teile). Folgen-Button funktional. Teil 1 und 2 sind klickbar.</div>
+    <span class="tag">Mobile · Interaktiv</span>
+  </a>
+  <a class="proto-link" href="serie-ceo-spotlight.html">
+    <div class="name">Serie: CEO spotlight</div>
+    <div class="desc">Serien-Detailseite (Unlimited Serie, 10 Teile). Folgen-Button funktional. Teil 10 ist klickbar.</div>
+    <span class="tag">Mobile · Interaktiv</span>
+  </a>
+</div>
 
+<div class="section-label">Artikelseiten</div>
+<div class="proto-list">
+  <a class="proto-link" href="swi-usability-test-prototyp.html">
+    <div class="name">Artikelseite – Serien-Teaser</div>
+    <div class="desc">Mobile Artikelseite mit interaktivem Serien-Teaser-Block. Cards sind swipebar. Folgen-Button funktional.</div>
+    <span class="tag">Mobile · Interaktiv</span>
+  </a>
 </div>
 
 <div class="footer">Frau Herren GmbH · Projekt SWI Serien · 2026</div>

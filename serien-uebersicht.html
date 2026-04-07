@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SWI – Alle Serien</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--r:#af001d;--bk:#101010}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:var(--bk);max-width:390px;margin:0 auto;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.topbar{background:#f5f5f5;padding:6px 16px;font-size:11px;color:#666;border-bottom:1px solid #e0e0e0}
+.header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #e0e0e0}
+.h-left{display:flex;align-items:center;gap:10px}
+.logo-box{background:var(--r);color:#fff;font-weight:800;font-size:16px;padding:3px 6px;line-height:1}
+.logo-text{font-size:17px;color:#000}
+.h-right{display:flex;align-items:center;gap:12px}
+.lang{border:1px solid #333;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#333}
+.nav{display:flex;padding:0 16px;border-bottom:1px solid #e0e0e0;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:13px;font-weight:600;color:#333;text-decoration:none;padding:10px 12px 10px 0;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+
+.page-title{font-size:32px;font-weight:500;padding:16px 12px 8px;color:#000}
+.page-intro{font-family:Georgia,'Noto Serif',serif;font-size:18px;line-height:1.5;padding:0 12px 24px;color:#000}
+
+.serie-card{display:block;text-decoration:none;color:inherit;margin-bottom:24px}
+.serie-card.disabled{pointer-events:none}
+.serie-img-placeholder{width:100%;aspect-ratio:390/261;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:600}
+.serie-meta{padding:10px 12px 0}
+.serie-badge-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.badge{background:var(--r);color:#fff;font-size:14px;font-weight:600;padding:2px 6px;line-height:1.4}
+.teile-text{font-size:16px;font-weight:700;color:#090909}
+.serie-name{font-size:24px;font-weight:500;margin-bottom:6px;color:#000}
+.serie-desc{font-size:16px;font-weight:500;line-height:1.5;color:#000;padding-bottom:4px}
+
+/* CEO Spotlight variant: icon + count below desc */
+.teile-with-icon{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:700;color:#090909;margin-top:8px;padding-bottom:8px}
+.teile-with-icon svg{width:24px;height:24px}
+
+.footer-area{background:#f5f5f5;padding:40px 16px;text-align:center;font-size:12px;color:#999;margin-top:16px}
+</style>
+</head>
+<body>
+
+<div class="topbar">The Swiss voice in the world since 1935</div>
+<div class="header">
+  <div class="h-left">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <div style="display:flex;align-items:center;gap:6px"><span class="logo-box">SWI</span><span class="logo-text">swissinfo.ch</span></div>
+  </div>
+  <div class="h-right">
+    <div class="lang">DE</div>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+  </div>
+</div>
+<div class="nav">
+  <a href="#">GEOPOLITIK</a><a href="#">DEMOKRATIE</a><a href="#">WISSENSCHAFT</a><a href="#">GESELLSC…</a>
+</div>
+
+<div class="page-title">Alle Serien</div>
+<div class="page-intro">Manche Themen brauchen mehr als einen Artikel. Unsere Serien begleiten komplexe Geschichten über mehrere Teile – von laufenden Reihen bis zu abgeschlossenen Dossiers.</div>
+
+<!-- Serie 1: Gletscher (LINKED) -->
+<a class="serie-card" href="serie-gletscher.html">
+  <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#5b8fa8 0%,#d4e4ec 40%,#f0f4f7 60%,#8aafbf 100%);">
+    <svg width="120" height="80" viewBox="0 0 120 80" fill="none"><path d="M0 80L20 35 40 55 60 20 80 45 100 15 120 40V80H0Z" fill="rgba(255,255,255,0.5)"/><path d="M0 80L30 50 50 60 70 30 90 50 120 25V80H0Z" fill="rgba(255,255,255,0.3)"/></svg>
+  </div>
+  <div class="serie-meta">
+    <div class="serie-badge-row">
+      <span class="badge">Serie</span>
+      <span class="teile-text">5 Teile</span>
+    </div>
+    <div class="serie-name">Gletscher der Welt</div>
+    <div class="serie-desc">Vom Himalaya bis zu den Alpen, von Island bis Ostafrika: Überall auf der Welt schmelzen die Gletscher schneller als je zuvor. In fünf Teilen berichten wir über die lokalen Folgen – und was auf dem Spiel steht.</div>
+  </div>
+</a>
+
+<!-- Serie 2: Der Schweizer Franken (NOT linked) -->
+<div class="serie-card disabled">
+  <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#c41a1a 0%,#fff 33%,#c41a1a 66%,#fff 100%);">
+    <span style="background:rgba(0,0,0,0.15);padding:6px 12px;border-radius:4px;">CHF</span>
+  </div>
+  <div class="serie-meta">
+    <div class="serie-badge-row">
+      <span class="badge">Serie</span>
+      <span class="teile-text">5 Teile</span>
+    </div>
+    <div class="serie-name">Der Schweizer Franken</div>
+    <div class="serie-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+  </div>
+</div>
+
+<!-- Serie 3: CEO Spotlight (LINKED) — alternative variant with icon below -->
+<a class="serie-card" href="serie-ceo-spotlight.html">
+  <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#e8ddd0 0%,#c9b8a0 40%,#f5f0e8 60%,#d4c4aa 100%);">
+    <svg width="100" height="80" viewBox="0 0 100 80" fill="none"><circle cx="50" cy="30" r="18" fill="rgba(0,0,0,0.12)"/><path d="M25 80 C25 55, 75 55, 75 80Z" fill="rgba(0,0,0,0.08)"/></svg>
+  </div>
+  <div class="serie-meta">
+    <div class="serie-badge-row">
+      <span class="badge">Serie</span>
+    </div>
+    <div class="serie-name">CEO spotlight</div>
+    <div class="serie-desc">Was bewegt Schweizer Topmanager:innen? Jeden Monat spricht ein CEO über die Herausforderungen, die ihre Branche – und ihr Unternehmen – prägen.</div>
+    <div class="teile-with-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      10 Teile
+    </div>
+  </div>
+</a>
+
+<!-- Serie 4: Digitale Demokratie (NOT linked) -->
+<div class="serie-card disabled">
+  <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#2a5298 0%,#1e3c72 50%,#4a77c4 100%);">
+    <span style="background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:4px;">01 / 10</span>
+  </div>
+  <div class="serie-meta">
+    <div class="serie-badge-row">
+      <span class="badge">Serie</span>
+      <span class="teile-text">5 Teile</span>
+    </div>
+    <div class="serie-name">Digitale Demokratie</div>
+    <div class="serie-desc">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</div>
+  </div>
+</div>
+
+<!-- Serie 5: Neutralität der Schweiz (NOT linked) -->
+<div class="serie-card disabled">
+  <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#888 0%,#bbb 50%,#ddd 100%);">
+    <span style="background:rgba(255,255,255,0.25);padding:6px 12px;border-radius:4px;">⚖</span>
+  </div>
+  <div class="serie-meta">
+    <div class="serie-badge-row">
+      <span class="badge">Serie</span>
+      <span class="teile-text">5 Teile</span>
+    </div>
+    <div class="serie-name">Neutralität der Schweiz</div>
+    <div class="serie-desc">Vom Himalaya bis zu den Alpen, von Island bis Ostafrika: Überall auf der Welt schmelzen die Gletscher schneller als je zuvor. In fünf Teilen berichten wir über die lokalen Folgen.</div>
+  </div>
+</div>
+
+<div class="footer-area">
+  <div style="font-size:14px;font-weight:600;margin-bottom:8px;">SWI swissinfo.ch</div>
+  Prototyp für Usability Test · Frau Herren GmbH
+</div>
+
+</body>
+</html>
