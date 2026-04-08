@@ -22,9 +22,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .page-title{font-size:32px;font-weight:500;padding:16px 12px 8px;color:#000}
 .page-intro{font-family:Georgia,'Noto Serif',serif;font-size:18px;line-height:1.5;padding:0 12px 24px;color:#000}
 
+/* Serie card */
 .serie-card{display:block;text-decoration:none;color:inherit;margin-bottom:24px}
 .serie-card.disabled{pointer-events:none}
-.serie-img-placeholder{width:100%;aspect-ratio:390/261;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:600}
+.serie-red-line{height:2px;background:var(--r);margin:0 0 8px 0}
+.serie-img-placeholder{width:100%;aspect-ratio:390/261;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:600;margin-top:0}
 .serie-meta{padding:10px 12px 0}
 .serie-badge-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .badge{background:var(--r);color:#fff;font-size:14px;font-weight:600;padding:2px 6px;line-height:1.4}
@@ -32,11 +34,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .serie-name{font-size:24px;font-weight:500;margin-bottom:6px;color:#000}
 .serie-desc{font-size:16px;font-weight:500;line-height:1.5;color:#000;padding-bottom:4px}
 
-/* CEO Spotlight variant: icon + count below desc */
+/* CEO variant: icon + count below desc */
 .teile-with-icon{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:700;color:#090909;margin-top:8px;padding-bottom:8px}
 .teile-with-icon svg{width:24px;height:24px}
 
-.footer-area{background:#f5f5f5;padding:40px 16px;text-align:center;font-size:12px;color:#999;margin-top:16px}
+/* Pagination */
+.pagination{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:24px 12px 32px}
+.pagination-label{font-size:14px;color:#555}
+.pagination-row{display:flex;align-items:center;gap:6px}
+.page-num{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:#333;border:1px solid #ddd;background:#fff}
+.page-num.active{background:#fff;color:#000;border:2px solid #000}
+.page-arrow{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--r);border:none;cursor:pointer}
+.page-arrow svg{width:16px;height:16px;color:#fff}
+
+/* Footer */
+.footer{background:#1a1a1a;color:#fff;padding:28px 16px}
+.footer-logo{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.footer-logo .f-logo-box{background:var(--r);color:#fff;font-weight:800;font-size:14px;padding:2px 5px}
+.footer-logo span{font-size:15px;color:#fff}
+.footer-tagline{font-size:13px;color:#aaa;line-height:1.5;margin-bottom:20px}
+.footer-social{display:flex;gap:12px;margin-bottom:20px}
+.footer-social a{width:32px;height:32px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center}
+.footer-social svg{width:16px;height:16px;color:#aaa}
+.footer-stores{display:flex;gap:10px;margin-bottom:16px}
+.footer-store{background:#333;border-radius:6px;padding:6px 12px;font-size:11px;color:#ccc;display:flex;align-items:center;gap:6px}
+.footer-store svg{width:16px;height:16px}
+.footer-bottom{border-top:1px solid #333;padding-top:16px;font-size:11px;color:#666;line-height:1.6}
+.footer-bottom a{color:#888;text-decoration:none}
 </style>
 </head>
 <body>
@@ -61,6 +85,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- Serie 1: Gletscher (LINKED) -->
 <a class="serie-card" href="serie-gletscher.html">
+  <div class="serie-red-line"></div>
   <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#5b8fa8 0%,#d4e4ec 40%,#f0f4f7 60%,#8aafbf 100%);">
     <svg width="120" height="80" viewBox="0 0 120 80" fill="none"><path d="M0 80L20 35 40 55 60 20 80 45 100 15 120 40V80H0Z" fill="rgba(255,255,255,0.5)"/><path d="M0 80L30 50 50 60 70 30 90 50 120 25V80H0Z" fill="rgba(255,255,255,0.3)"/></svg>
   </div>
@@ -76,6 +101,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- Serie 2: Der Schweizer Franken (NOT linked) -->
 <div class="serie-card disabled">
+  <div class="serie-red-line"></div>
   <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#c41a1a 0%,#fff 33%,#c41a1a 66%,#fff 100%);">
     <span style="background:rgba(0,0,0,0.15);padding:6px 12px;border-radius:4px;">CHF</span>
   </div>
@@ -89,8 +115,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- Serie 3: CEO Spotlight (LINKED) — alternative variant with icon below -->
+<!-- Serie 3: CEO Spotlight (LINKED) -->
 <a class="serie-card" href="serie-ceo-spotlight.html">
+  <div class="serie-red-line"></div>
   <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#e8ddd0 0%,#c9b8a0 40%,#f5f0e8 60%,#d4c4aa 100%);">
     <svg width="100" height="80" viewBox="0 0 100 80" fill="none"><circle cx="50" cy="30" r="18" fill="rgba(0,0,0,0.12)"/><path d="M25 80 C25 55, 75 55, 75 80Z" fill="rgba(0,0,0,0.08)"/></svg>
   </div>
@@ -109,6 +136,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- Serie 4: Digitale Demokratie (NOT linked) -->
 <div class="serie-card disabled">
+  <div class="serie-red-line"></div>
   <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#2a5298 0%,#1e3c72 50%,#4a77c4 100%);">
     <span style="background:rgba(255,255,255,0.2);padding:6px 12px;border-radius:4px;">01 / 10</span>
   </div>
@@ -124,6 +152,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- Serie 5: Neutralität der Schweiz (NOT linked) -->
 <div class="serie-card disabled">
+  <div class="serie-red-line"></div>
   <div class="serie-img-placeholder" style="background:linear-gradient(135deg,#888 0%,#bbb 50%,#ddd 100%);">
     <span style="background:rgba(255,255,255,0.25);padding:6px 12px;border-radius:4px;">⚖</span>
   </div>
@@ -137,9 +166,48 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<div class="footer-area">
-  <div style="font-size:14px;font-weight:600;margin-bottom:8px;">SWI swissinfo.ch</div>
-  Prototyp für Usability Test · Frau Herren GmbH
+<!-- Pagination -->
+<div class="pagination">
+  <div class="pagination-label">Seite 1 von 251</div>
+  <div class="pagination-row">
+    <div class="page-num active">1</div>
+    <div class="page-num">2</div>
+    <div class="page-num">3</div>
+    <div class="page-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></div>
+    <div class="page-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 18l6-6-6-6M5 18l6-6-6-6"/></svg></div>
+  </div>
+</div>
+
+<!-- SWI Footer -->
+<div class="footer">
+  <div class="footer-logo">
+    <span class="f-logo-box">SWI</span>
+    <span>swissinfo.ch</span>
+  </div>
+  <div class="footer-tagline">SWI swissinfo.ch – die internationale Plattform der Schweizer Medien SRG SSR für Nachrichten und Hintergründe aus der Schweiz, auf Deutsch, Englisch, Französisch, Italienisch, Spanisch, Portugiesisch, Russisch, Japanisch, Chinesisch und Arabisch.</div>
+
+  <div class="footer-social">
+    <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg></a>
+  </div>
+
+  <div class="footer-stores">
+    <div class="footer-store">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      App Store
+    </div>
+    <div class="footer-store">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 010 1.732l-2.807 1.627L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+      Google Play
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <a href="#">Impressum</a> · <a href="#">Kontakt</a> · <a href="#">Datenschutz</a> · <a href="#">Nutzungsbedingungen</a><br>
+    © 2026 SWI swissinfo.ch<br>
+    SRG SSR
+  </div>
 </div>
 
 </body>

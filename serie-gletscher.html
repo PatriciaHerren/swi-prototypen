@@ -31,25 +31,56 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 .divider{height:1px;background:#ddd;margin:0 12px}
 
+/* Follow block */
 .follow-block{padding:16px 12px;display:flex;flex-direction:column;gap:10px}
 .follow-text{font-family:Georgia,'Noto Serif',serif;font-size:18px;line-height:1.5;color:#000}
-.follow-btn{display:inline-flex;align-items:center;gap:6px;background:var(--r);color:#fff;border:none;border-radius:40px;padding:8px 18px 8px 12px;font-size:18px;font-weight:500;cursor:pointer;width:fit-content;font-family:inherit;transition:all .2s}
+
+/* Follow button — new style */
+.follow-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#f1f2f3;color:var(--r);
+  border:none;border-radius:40px;
+  padding:8px 14px 8px 18px;
+  font-size:18px;font-weight:500;
+  cursor:pointer;width:fit-content;font-family:inherit;
+  transition:all .2s;
+  flex-direction:row;
+}
 .follow-btn:active{opacity:.8}
 .follow-btn svg{width:22px;height:22px}
-.follow-btn.followed{background:#f1f2f3;color:var(--r)}
+.follow-btn.is-following{background:#f1f2f3;color:var(--r)}
 
-/* Article teaser — SWI style with red line */
+/* Article teaser — SWI style */
 .article-teaser{display:block;text-decoration:none;color:inherit;padding:0 12px;margin-bottom:32px}
 .article-teaser.disabled{pointer-events:none}
 .article-teaser .teil{font-size:16px;font-weight:700;color:var(--r);padding-bottom:6px;border-bottom:2px solid var(--r);margin-bottom:10px}
 .article-teaser .img-placeholder{width:100%;aspect-ratio:370/245;margin-bottom:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:13px}
 .article-teaser h3{font-size:24px;font-weight:500;line-height:1.3;margin-bottom:6px;color:#000}
-.article-teaser .lead{font-size:16px;font-weight:500;line-height:1.5;color:#000}
+.article-teaser .lead{font-size:16px;font-weight:500;line-height:1.5;color:#000;margin-bottom:4px}
+.article-teaser .meta{font-size:14px;color:#000;margin-bottom:2px}
+.article-teaser .teaser-badge-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.article-teaser .teaser-badge-row .serie-name{font-size:16px;font-weight:700;color:#131313}
 .article-teaser.upcoming{opacity:.5}
 
-.bottom-follow{padding:20px 12px;display:flex;flex-direction:column;gap:10px;border-top:1px solid #ddd;margin:0 12px}
+/* Bottom follow */
+.bottom-follow{padding:20px 12px;display:flex;flex-direction:column;gap:10px}
 
-.footer-area{background:#f5f5f5;padding:40px 16px;text-align:center;font-size:12px;color:#999;margin-top:16px}
+/* Footer */
+.footer{background:#1a1a1a;color:#fff;padding:28px 16px}
+.footer-logo{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.footer-logo .logo-box{background:var(--r);color:#fff;font-weight:800;font-size:14px;padding:2px 5px}
+.footer-logo span{font-size:15px;color:#fff}
+.footer-tagline{font-size:13px;color:#aaa;line-height:1.5;margin-bottom:20px}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-bottom:20px}
+.footer-links a{color:#ccc;text-decoration:none;font-size:13px}
+.footer-social{display:flex;gap:12px;margin-bottom:20px}
+.footer-social a{width:32px;height:32px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center}
+.footer-social svg{width:16px;height:16px;color:#aaa}
+.footer-stores{display:flex;gap:10px;margin-bottom:16px}
+.footer-store{background:#333;border-radius:6px;padding:6px 12px;font-size:11px;color:#ccc;display:flex;align-items:center;gap:6px}
+.footer-store svg{width:16px;height:16px}
+.footer-bottom{border-top:1px solid #333;padding-top:16px;font-size:11px;color:#666;line-height:1.6}
+.footer-bottom a{color:#888;text-decoration:none}
 </style>
 </head>
 <body>
@@ -77,15 +108,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <div class="page-title">Gletscher der Welt</div>
-<div class="page-intro">Vom Himalaya bis zu den Alpen, von Island bis Ostafrika: Überall auf der Welt schmelzen die Gletscher schneller als je zuvor. In fünf Teilen berichten wir über die lokalen Folgen – und was auf dem Spiel steht.</div>
+<div class="page-intro">Sie speichern Süsswasser, prägen Kulturen und schützen vor Überschwemmungen – und sie verschwinden. Fünf Reportagen aus fünf Regionen zeigen, was der weltweite Gletscherschwund vor Ort bedeutet: für Menschen, Ökosysteme und die globale Wasserversorgung.</div>
 
 <div class="divider"></div>
 
 <div class="follow-block">
-  <div class="follow-text"><strong>Dieser Serie folgen & Updates erhalten.</strong><br>Es erscheinen noch 2 weitere Artikel.</div>
+  <div class="follow-text"><strong>Dieser Serie folgen & Updates erhalten.</strong><br>Sie werden benachrichtigt, sobald ein neuer Teil erscheint.</div>
   <button class="follow-btn" id="followBtn" onclick="toggleFollow(this)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    Folgen
+    Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
   </button>
 </div>
 
@@ -95,8 +125,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="img-placeholder" style="background:linear-gradient(135deg,#6a9fb5 0%,#c8dde6 50%,#e8f0f4 100%);">
     <svg width="140" height="80" viewBox="0 0 140 80" fill="none"><path d="M0 80L20 30 50 55 70 15 100 40 130 10 140 30V80H0Z" fill="rgba(255,255,255,0.5)"/></svg>
   </div>
+  <div class="teaser-badge-row"><span class="badge">Serie</span><span class="serie-name">Gletscher der Welt</span></div>
   <h3>Nepal und der Himalaya: vom Leiden der Gletscher auf dem Dach der Welt</h3>
-  <div class="lead">Das Abschmelzen der Gletscher im Himalaya erhöht das Risiko katastrophaler Überschwemmungen und verringert die Süsswasserressourcen für fast zwei Milliarden Menschen.</div>
+  <div class="meta">11. Dez. 2025 • Teil 1</div>
+  <div class="lead">Die Gletscherschmelze im Himalaya erhöht das Risiko von Überschwemmungen und verringert die Süsswasserressourcen für fast zwei Milliarden Menschen.</div>
 </a>
 
 <!-- Article 2 (LINKED) -->
@@ -105,7 +137,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="img-placeholder" style="background:linear-gradient(135deg,#3d7a4f 0%,#7ab88a 50%,#c4e0ca 100%);">
     <svg width="140" height="80" viewBox="0 0 140 80" fill="none"><path d="M0 80L30 45 60 60 90 25 120 50 140 30V80H0Z" fill="rgba(255,255,255,0.4)"/></svg>
   </div>
+  <div class="teaser-badge-row"><span class="badge">Serie</span><span class="serie-name">Gletscher der Welt</span></div>
   <h3>Südamerikas tropische Gletscher sind ein bedrohtes Kulturerbe</h3>
+  <div class="meta">15. Jan. 2026 • Teil 2</div>
   <div class="lead">Die tropischen Gletscher der Anden schmelzen mit alarmierender Geschwindigkeit und bedrohen nicht nur Ökosysteme, sondern auch das kulturelle Erbe indigener Gemeinschaften.</div>
 </a>
 
@@ -115,7 +149,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="img-placeholder" style="background:linear-gradient(135deg,#2c3e50 0%,#5a7d9a 50%,#8fadbf 100%);">
     <svg width="140" height="80" viewBox="0 0 140 80" fill="none"><path d="M0 80L20 50 50 35 80 55 110 25 140 40V80H0Z" fill="rgba(255,255,255,0.35)"/></svg>
   </div>
-  <h3>Gletscherfriedhof Island</h3>
+  <div class="teaser-badge-row"><span class="badge">Serie</span><span class="serie-name">Gletscher der Welt</span></div>
+  <h3>Gletscherfriedhof Island – wenn Gletscher offiziell sterben</h3>
+  <div class="meta">12. März 2026 • Teil 3</div>
   <div class="lead">Island hat bereits einen Gletscher offiziell für tot erklärt. Die Insel im Nordatlantik erlebt den Rückgang ihrer Eismassen aus nächster Nähe.</div>
 </div>
 
@@ -125,7 +161,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="img-placeholder" style="background:linear-gradient(135deg,#8B4513 0%,#D2691E 50%,#DEB887 100%);">
     <svg width="140" height="80" viewBox="0 0 140 80" fill="none"><path d="M0 80L40 20 70 50 100 10 140 35V80H0Z" fill="rgba(255,255,255,0.3)"/></svg>
   </div>
-  <h3>Die letzten Gletscher Ostafrikas sind angezählt</h3>
+  <div class="teaser-badge-row"><span class="badge">Serie</span><span class="serie-name">Gletscher der Welt</span></div>
+  <h3>Die letzten Gletscher Ostafrikas sind angezählt – können sie uns noch etwas lehren?</h3>
+  <div class="meta">15. Mai 2026 • Teil 4</div>
   <div class="lead">Am Kilimandscharo und am Mount Kenya schmelzen die letzten Reste einstiger Eisriesen. Bis 2040 könnten sie vollständig verschwunden sein.</div>
 </div>
 
@@ -135,30 +173,66 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="img-placeholder" style="background:linear-gradient(135deg,#94a3b8 0%,#cbd5e1 50%,#e2e8f0 100%);">
     <svg width="140" height="80" viewBox="0 0 140 80" fill="none"><path d="M0 80L25 35 55 55 85 20 115 45 140 25V80H0Z" fill="rgba(255,255,255,0.4)"/></svg>
   </div>
+  <div class="teaser-badge-row"><span class="badge">Serie</span><span class="serie-name">Gletscher der Welt</span></div>
   <h3>Die Alpengletscher schmelzen auch an den höchsten Gipfeln</h3>
-  <div class="lead">Artikel erscheint demnächst...</div>
+  <div class="meta">Erscheint demnächst…</div>
 </div>
 
-<div class="bottom-follow">
-  <div class="follow-text"><strong>Dieser Serie folgen & Updates erhalten.</strong><br>Es erscheinen noch 2 weitere Artikel.</div>
+<!-- Bottom CTA -->
+<div style="padding:12px 12px 4px;margin-top:8px">
+  <div class="divider" style="margin:0"></div>
+</div>
+<div class="follow-block">
+  <div class="follow-text" style="font-size:16px;"><strong>Dieser Serie folgen & Updates erhalten.</strong><br>Sie werden benachrichtigt, sobald ein neuer Teil erscheint.</div>
   <button class="follow-btn" id="followBtn2" onclick="toggleFollow(this)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    Folgen
+    Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
   </button>
 </div>
 
-<div class="footer-area">
-  <div style="font-size:14px;font-weight:600;margin-bottom:8px;">SWI swissinfo.ch</div>
-  Prototyp für Usability Test · Frau Herren GmbH
+<!-- SWI Footer -->
+<div class="footer">
+  <div class="footer-logo">
+    <span class="logo-box">SWI</span>
+    <span>swissinfo.ch</span>
+  </div>
+  <div class="footer-tagline">SWI swissinfo.ch – die internationale Plattform der Schweizer Medien SRG SSR für Nachrichten und Hintergründe aus der Schweiz, auf Deutsch, Englisch, Französisch, Italienisch, Spanisch, Portugiesisch, Russisch, Japanisch, Chinesisch und Arabisch.</div>
+
+  <div class="footer-social">
+    <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg></a>
+  </div>
+
+  <div class="footer-stores">
+    <div class="footer-store">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      App Store
+    </div>
+    <div class="footer-store">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 010 1.732l-2.807 1.627L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+      Google Play
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <a href="#">Impressum</a> · <a href="#">Kontakt</a> · <a href="#">Datenschutz</a> · <a href="#">Nutzungsbedingungen</a><br>
+    © 2026 SWI swissinfo.ch<br>
+    SRG SSR
+  </div>
 </div>
 
 <script>
 function toggleFollow(btn){
-  const f=btn.classList.toggle('followed');
-  btn.innerHTML=f
-    ?'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Gefolgt'
-    :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Folgen';
-  document.querySelectorAll('.follow-btn').forEach(b=>{if(b!==btn){b.className=btn.className;b.innerHTML=btn.innerHTML}});
+  const f = btn.classList.toggle('is-following');
+  if(f){
+    btn.innerHTML = 'Gefolgt <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="#af001d"/><path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  } else {
+    btn.innerHTML = 'Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  }
+  // Sync both buttons
+  document.querySelectorAll('.follow-btn').forEach(b=>{
+    if(b!==btn){b.className=btn.className;b.innerHTML=btn.innerHTML}
+  });
 }
 </script>
 </body>
