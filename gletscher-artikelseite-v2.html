@@ -433,4 +433,9 @@ function toggleFollow(btn){
   const f=btn.classList.toggle('is-following');
   btn.innerHTML=f
     ?'Gefolgt <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="#af001d"/><path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-    :'Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stro
+    :'Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  document.querySelectorAll('.follow-btn').forEach(b=>{if(b!==btn){b.className=btn.className;b.innerHTML=btn.innerHTML}});
+}
+</script>
+</body>
+</html>
