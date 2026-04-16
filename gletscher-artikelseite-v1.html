@@ -31,6 +31,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .article-title{padding:4px 16px 12px;font-family:Georgia,'Noto Serif',serif;font-size:28px;font-weight:700;line-height:1.2;color:#000}
 .hero-image{width:100%;display:block}
 .hero-lead{padding:8px 16px 12px;font-size:17px;line-height:1.6;color:#000}
+.action-buttons{display:flex;gap:10px;padding:12px 16px 16px}
+.action-btn{display:flex;align-items:center;gap:5px;background:#f1f2f3;border:none;border-radius:40px;cursor:pointer;font-size:16px;font-weight:500;color:var(--r);font-family:inherit;padding:8px 16px}
+.action-btn svg{width:20px;height:20px}
 .article-meta{padding:4px 16px 12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#666}
 .article-meta-right{display:flex;align-items:center;gap:4px}
 .meta-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:2px solid var(--r);font-size:14px;color:#333}
@@ -41,7 +44,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 /* Expandable series nav in meta area */
 .meta-row-expandable{border-top:2px solid var(--r);border-bottom:2px solid var(--r)}
 .meta-row-expandable .meta-row-trigger{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;cursor:pointer}
-.meta-row-expandable .meta-row-trigger-left{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#333}
+.meta-row-expandable .meta-row-trigger-left{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:400;color:#333}
 .meta-row-expandable .meta-row-trigger-left svg{width:20px;height:20px;color:#666}
 .meta-row-expandable .chevron-toggle{width:22px;height:22px;color:var(--r);transition:transform .25s}
 .meta-row-expandable.is-open .chevron-toggle{transform:rotate(180deg)}
@@ -164,6 +167,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <img class="hero-image" src="https://www.figma.com/api/mcp/asset/c64adbf4-8547-4e1b-b37c-94e89b45e37e" alt="Nepal Himalaya Gletscher">
 <div class="hero-lead">Das Abschmelzen der Gletscher im Himalaya erhöht das Risiko katastrophaler Überschwemmungen und verringert die Süsswasserressourcen für fast zwei Milliarden Menschen. Die Herausforderungen in Bezug auf die Klimaanpassung in einem armen Land wie Nepal sind gewaltig.</div>
 
+<div class="action-buttons">
+  <button class="action-btn">Merken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></svg></button>
+  <button class="action-btn">Teilen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+</div>
+
 <div class="article-meta">
   <span>20. April 2025 - 10:00</span>
   <div class="article-meta-right">
@@ -240,6 +248,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- Editiert von -->
 <div class="editiert-von">Editiert von Gabe Bullard. Übertragung aus dem Italienischen: Gerhard Lob</div>
+<div style="padding:0 16px 16px;font-size:14px;color:#333"><strong>Fehler gefunden?</strong> <a href="mailto:german@swissinfo.ch?subject=Fehlermeldung%20Artikel%3A%20Nepal%20und%20der%20Himalaya%3A%20vom%20Leiden%20der%20Gletscher%20auf%20dem%20Dach%20der%20Welt&body=Bitte%20Fehler%20beschreiben%3A%0A%0A%0A%0A---%0Ahttps%3A%2F%2Fwww.swissinfo.ch%2Fger%2Fgletscher-nepal-himalaya" style="color:#af001d;text-decoration:underline;font-weight:500">Jetzt melden</a></div>
 
 <!-- SWIplus App Teaser -->
 <div class="app-teaser">
@@ -256,6 +265,47 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="app-teaser-phone">📱</div>
   </div>
 </div>
+
+<!-- Teile dieser Serie -->
+<div class="article-list-section">
+  <div class="article-list-title">Teile dieser Serie</div>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil is-current">Sie lesen gerade: Teil 1</span><span class="article-list-headline">Nepal und der Himalaya: vom Leiden der Gletscher auf dem Dach der Welt</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#6a9fb5,#c8dde6);"></div></a>
+  <a class="article-list-item" href="gletscher-artikelseite-v2.html"><div class="article-list-item-text"><span class="article-list-teil">Teil 2</span><span class="article-list-headline">Südamerikas tropische Gletscher sind ein bedrohtes Kulturerbe</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#3d7a4f,#7ab88a);"></div></a>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil">Teil 3</span><span class="article-list-headline">Gletscherfriedhof Island</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#2c3e50,#5a7d9a);"></div></a>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil">Teil 4</span><span class="article-list-headline">Die letzten Gletscher Ostafrikas sind angezählt</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#8B4513,#D2691E);"></div></a>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil is-upcoming">Teil 5</span><span class="article-list-headline is-upcoming">Die Alpengletscher schmelzen auch an den höchsten Gipfeln</span><span class="article-list-date">Artikel erscheint demnächst...</span></div><div class="article-list-thumb is-upcoming" style="background:linear-gradient(135deg,#94a3b8,#cbd5e1);"></div></a>
+</div>
+
+<!-- Follow CTA below article list -->
+<div class="list-follow-block">
+  <div style="height:1px;background:#ddd;margin-bottom:8px"></div>
+  <div class="list-follow-text"><strong>Dieser Serie folgen & Updates erhalten.</strong></div>
+  <button class="follow-btn" id="followBtn2" onclick="toggleFollow(this)">Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+</div>
+
+<!-- Bottom teasers -->
+<div class="bottom-teaser">
+  <div class="bottom-teaser-title">Diskutieren Sie mit!</div>
+  <p>Besuchen Sie unsere <a href="#">laufenden Debatten mit SWI-Journalist:innen.</a> Tauschen Sie sich mit unserer Community zu aktuellen Themen aus.</p>
+</div>
+
+<!-- Mehr lesen -->
+<div style="margin:20px 16px 0;border-top:2px solid var(--r);padding-top:12px">
+  <div style="font-size:16px;color:var(--r);margin-bottom:12px">Mehr lesen</div>
+  <div style="display:flex;gap:10px">
+    <div style="flex:1">
+      <div style="width:100%;aspect-ratio:1/0.7;background:linear-gradient(135deg,#6a9fb5,#c8dde6);margin-bottom:6px"></div>
+      <div style="font-size:14px;font-weight:600;line-height:1.3;color:#000;margin-bottom:4px">Mit der weltweiten Gletscherschmelze wird das Monitoring der Schweiz immer wichtiger</div>
+      <div style="font-size:12px;color:#666;line-height:1.4">21. März 2025 • Überall auf der Welt schmelzen die Gletscher immer schneller.</div>
+    </div>
+    <div style="flex:1">
+      <div style="width:100%;aspect-ratio:1/0.7;background:linear-gradient(135deg,#8B7355,#C4A882);margin-bottom:6px"></div>
+      <div style="font-size:14px;font-weight:600;line-height:1.3;color:#000;margin-bottom:4px">1,2 Millionen Eiswürfel birgt für grösstes Klimageschichte</div>
+      <div style="font-size:12px;color:#666;line-height:1.4">10. Jan. 2025 • Forschende haben die älteste Eisprobe entnommen.</div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Beliebte Artikel -->
 <div class="popular-section">
@@ -290,62 +340,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- Teile dieser Serie -->
-<div class="article-list-section">
-  <div class="article-list-title">Teile dieser Serie</div>
-  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil is-current">Sie lesen gerade: Teil 1</span><span class="article-list-headline">Nepal und der Himalaya: vom Leiden der Gletscher auf dem Dach der Welt</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#6a9fb5,#c8dde6);"></div></a>
-  <a class="article-list-item" href="gletscher-artikelseite-v2.html"><div class="article-list-item-text"><span class="article-list-teil">Teil 2</span><span class="article-list-headline">Südamerikas tropische Gletscher sind ein bedrohtes Kulturerbe</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#3d7a4f,#7ab88a);"></div></a>
-  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil">Teil 3</span><span class="article-list-headline">Gletscherfriedhof Island</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#2c3e50,#5a7d9a);"></div></a>
-  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil">Teil 4</span><span class="article-list-headline">Die letzten Gletscher Ostafrikas sind angezählt</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#8B4513,#D2691E);"></div></a>
-  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil is-upcoming">Teil 5</span><span class="article-list-headline is-upcoming">Die Alpengletscher schmelzen auch an den höchsten Gipfeln</span><span class="article-list-date">Artikel erscheint demnächst...</span></div><div class="article-list-thumb is-upcoming" style="background:linear-gradient(135deg,#94a3b8,#cbd5e1);"></div></a>
-</div>
-
-<!-- Follow CTA below article list -->
-<div class="list-follow-block">
-  <div style="height:1px;background:#ddd;margin-bottom:8px"></div>
-  <div class="list-follow-text"><strong>Dieser Serie folgen & Updates erhalten.</strong></div>
-  <button class="follow-btn" id="followBtn2" onclick="toggleFollow(this)">Folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
-</div>
-
-<!-- Bottom teasers -->
-<div class="bottom-teaser">
-  <div class="bottom-teaser-title">Diskutieren Sie mit!</div>
-  <p>Besuchen Sie unsere <a href="#">laufenden Debatten mit SWI-Journalist:innen.</a></p><br>
-  <p>Sachlichen Fehler entdeckt oder eine Debatte zu diesem Artikel starten? Schreiben Sie uns: <a href="#"><span class="__cf_email__" data-cfemail="b2d5d7c0dfd3dcf2c1c5dbc1c1dbdcd4dd9cd1da">[email&#160;protected]</span></a></p>
-</div>
-<div style="height:16px;"></div>
-<div class="bottom-teaser">
-  <div class="bottom-teaser-title">Warum Sie uns vertrauen können</div>
-  <div class="jti-row">
-    <div style="width:78px;height:59px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-      <svg viewBox="0 0 120 90" width="78" height="55" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="48" font-family="'Arial Black',Arial,sans-serif" font-size="52" font-weight="900" fill="#1b2e4a" letter-spacing="-2">jti</text>
-        <rect x="75" y="8" width="38" height="38" rx="3" fill="#7fb5d5"/>
-        <path d="M83 28 L92 37 L107 19" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="0" y="76" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#1b2e4a" letter-spacing="3">CERTIFIED</text>
-      </svg>
-    </div>
-    <p>SWI swissinfo.ch ist JTI-zertifiziert für transparenten, professionellen Journalismus. <a href="#">Mehr erfahren</a></p>
-  </div>
-</div>
-
-<!-- Mehr lesen -->
-<div style="margin:20px 16px 0;border-top:2px solid var(--r);padding-top:12px">
-  <div style="font-size:16px;color:var(--r);margin-bottom:12px">Mehr lesen</div>
-  <div style="display:flex;gap:10px">
-    <div style="flex:1">
-      <div style="width:100%;aspect-ratio:1/0.7;background:linear-gradient(135deg,#6a9fb5,#c8dde6);margin-bottom:6px"></div>
-      <div style="font-size:14px;font-weight:600;line-height:1.3;color:#000;margin-bottom:4px">Mit der weltweiten Gletscherschmelze wird das Monitoring der Schweiz immer wichtiger</div>
-      <div style="font-size:12px;color:#666;line-height:1.4">21. März 2025 • Überall auf der Welt schmelzen die Gletscher immer schneller.</div>
-    </div>
-    <div style="flex:1">
-      <div style="width:100%;aspect-ratio:1/0.7;background:linear-gradient(135deg,#8B7355,#C4A882);margin-bottom:6px"></div>
-      <div style="font-size:14px;font-weight:600;line-height:1.3;color:#000;margin-bottom:4px">1,2 Millionen Eiswürfel birgt für grösstes Klimageschichte</div>
-      <div style="font-size:12px;color:#666;line-height:1.4">10. Jan. 2025 • Forschende haben die älteste Eisprobe entnommen.</div>
-    </div>
-  </div>
-</div>
-
 <div style="padding:16px;display:flex;justify-content:flex-start">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
 </div>
@@ -364,6 +358,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Jahresbericht 2024</a>
     <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Public Value</a>
     <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Kontakt</a>
+    <a href="#" style="display:flex;align-items:center;gap:6px;font-size:13px;color:#888;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">
+      <svg viewBox="0 0 120 90" width="32" height="22" xmlns="http://www.w3.org/2000/svg"><text x="0" y="48" font-family="'Arial Black',Arial,sans-serif" font-size="52" font-weight="900" fill="#8aa" letter-spacing="-2">jti</text><rect x="75" y="8" width="38" height="38" rx="3" fill="#a8c8d8"/><path d="M83 28 L92 37 L107 19" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      JTI-zertifiziert
+    </a>
   </div>
   <div style="font-size:13px;color:#555;margin-bottom:12px">Folgen Sie uns</div>
   <div style="display:flex;gap:14px;margin-bottom:24px">
