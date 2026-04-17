@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SWI – Artikelseite V1</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--r:#af001d;--rl:#ca8993;--bk:#101010;--g:#777;--bg:#fff;--cw:246px;--cg:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--bk);max-width:390px;margin:0 auto;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.topbar{background:#f5f5f5;padding:6px 16px;font-size:11px;color:#666;border-bottom:1px solid #e0e0e0}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #e0e0e0}
+.hdr-l{display:flex;align-items:center;gap:10px}
+.logo-box{background:var(--r);color:#fff;font-weight:800;font-size:16px;padding:3px 6px;line-height:1}
+.logo-text{font-size:17px;color:#000}
+.hdr-r{display:flex;align-items:center;gap:12px}
+.lang{border:1px solid #333;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#333}
+.nav{display:flex;padding:0 16px;border-bottom:1px solid #e0e0e0;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:13px;font-weight:600;color:#333;text-decoration:none;padding:10px 12px 10px 0;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.breadcrumb{padding:10px 16px;font-size:14px;color:var(--r);font-weight:500}
+.breadcrumb a{color:var(--r);text-decoration:none}
+
+.series-label-bar{display:flex;align-items:center;gap:8px;padding:12px 16px 2px;flex-wrap:wrap}
+.badge{background:var(--r);color:#fff;font-size:14px;font-weight:600;padding:2px 6px;line-height:1.4}
+.series-name-inline{font-size:16px;font-weight:700;color:var(--bk)}
+.teil-separator{color:#999;font-size:16px}
+.teil-inline{font-size:16px;font-weight:700;color:var(--bk)}
+
+.article-title{padding:4px 16px 12px;font-family:Georgia,'Noto Serif',serif;font-size:28px;font-weight:700;line-height:1.2;color:#000}
+.hero-image{width:100%;display:block}
+.hero-lead{padding:8px 16px 12px;font-size:17px;line-height:1.6;color:#000}
+.action-buttons{display:flex;gap:10px;padding:12px 16px 16px;flex-wrap:wrap}
+.action-btn{display:flex;align-items:center;gap:5px;background:#f1f2f3;border:none;border-radius:40px;cursor:pointer;font-size:16px;font-weight:500;color:var(--r);font-family:inherit;padding:8px 16px}
+.action-btn svg{width:20px;height:20px}
+.article-meta{padding:4px 16px 12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#666}
+.article-meta-right{display:flex;align-items:center;gap:4px}
+.meta-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:2px solid var(--r);font-size:14px;color:#333}
+.meta-row-left{display:flex;align-items:center;gap:6px}
+.meta-row svg{width:18px;height:18px;color:#666}
+.meta-row .chevron{width:22px;height:22px;color:var(--r)}
+
+/* Expandable series nav in meta area */
+.meta-row-expandable{border-top:2px solid var(--r);border-bottom:2px solid var(--r)}
+.meta-row-expandable .meta-row-trigger{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;cursor:pointer}
+.meta-row-expandable .meta-row-trigger-left{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:400;color:#333}
+.meta-row-expandable .meta-row-trigger-left svg{width:20px;height:20px;color:#666}
+.meta-row-expandable .chevron-toggle{width:22px;height:22px;color:var(--r);transition:transform .25s}
+.meta-row-expandable.is-open .chevron-toggle{transform:rotate(180deg)}
+.meta-row-expandable .expand-content{padding:0 16px 14px;display:block}
+.meta-row-expandable.is-closed .expand-content{display:none}
+.expand-label{font-size:12px;font-weight:700;color:#333;margin-bottom:8px;padding-left:8px}
+.expand-list{list-style:none;padding:0}
+.expand-list li{padding:8px 8px;border-top:1px solid #e8e8e8;font-size:14px;line-height:1.4;display:flex;align-items:flex-start;gap:6px}
+.expand-list li:first-child{border-top:none}
+.expand-list li .li-arrow{color:var(--r);font-size:12px;margin-top:2px;flex-shrink:0}
+.expand-list li a{color:var(--r);text-decoration:none}
+.expand-list li.is-current{font-weight:700}
+
+.article-body{padding:16px}
+.article-body p{font-family:Georgia,'Noto Serif',serif;font-size:17px;line-height:1.65;margin-bottom:16px;color:#111}
+
+/* Simple collapsible series teaser (V1 style) */
+.series-teaser-simple{margin:8px 16px 12px;border:2px solid var(--r);overflow:hidden}
+.series-teaser-simple-trigger{display:flex;align-items:flex-start;justify-content:space-between;padding:16px 16px 12px;cursor:pointer}
+.series-teaser-simple-trigger-left{flex:1}
+.series-teaser-simple-title{font-size:16px;font-weight:700;color:var(--bk);margin-bottom:4px}
+.series-teaser-simple-subtitle{font-family:Georgia,'Noto Serif',serif;font-size:22px;font-weight:400;line-height:1.3;color:#000}
+.series-teaser-simple .chevron-toggle2{width:22px;height:22px;color:var(--r);transition:transform .25s;flex-shrink:0;margin-top:4px}
+.series-teaser-simple.is-open .chevron-toggle2{transform:rotate(180deg)}
+.series-teaser-simple-body{padding:0 16px 16px;display:block}
+.series-teaser-simple.is-closed .series-teaser-simple-body{display:none}
+.series-teaser-simple-body p{font-family:Georgia,'Noto Serif',serif;font-size:16px;line-height:1.6;color:#000;margin-bottom:12px}
+.series-teaser-simple-body a{color:var(--r);text-decoration:underline}
+
+/* Follow button */
+.follow-section{padding:12px 16px 16px;border-top:1px solid #ddd;display:flex;flex-direction:column;gap:10px}
+.follow-label{font-size:18px;font-weight:500;line-height:1.5;color:#000}
+.follow-btn{display:inline-flex;align-items:center;gap:6px;background:#f1f2f3;color:var(--r);border:none;border-radius:40px;padding:8px 14px 8px 18px;font-size:18px;font-weight:500;cursor:pointer;width:fit-content;font-family:inherit;transition:all .2s}
+.follow-btn:active{opacity:.8}
+.follow-btn svg{width:22px;height:22px}
+
+/* Editiert-von */
+.editiert-von{padding:0 16px 16px;font-family:Georgia,'Noto Serif',serif;font-size:15px;font-style:italic;color:#555;line-height:1.5}
+
+/* SWIplus App teaser */
+.app-teaser{margin:0 16px 20px;border:1px solid #e0e0e0;padding:16px}
+.app-teaser-text{font-size:15px;font-weight:600;line-height:1.5;color:#000;margin-bottom:12px}
+.app-teaser-text a{color:var(--r);text-decoration:underline}
+.app-teaser-banner{background:var(--r);border-radius:8px;padding:16px;display:flex;align-items:center;gap:12px;color:#fff}
+.app-teaser-banner-text{flex:1}
+.app-teaser-banner-text .app-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.app-teaser-banner-text .app-desc{font-size:12px;line-height:1.4;opacity:.9}
+.app-teaser-phone{width:80px;height:100px;background:rgba(255,255,255,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+
+/* Beliebte Artikel */
+.popular-section{margin:0 16px 20px;border-top:2px solid var(--r);padding-top:12px}
+.popular-title{font-size:20px;color:var(--r);margin-bottom:14px}
+.popular-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;text-decoration:none;color:inherit}
+.popular-item-text{flex:1}
+.popular-item-cat{font-size:11px;font-weight:600;color:var(--r);text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.popular-item-headline{font-size:16px;font-weight:500;line-height:1.35;color:#000}
+.popular-item-thumb{width:75px;height:55px;background:#eee;flex-shrink:0}
+
+/* Meistdiskutiert */
+.debates-section{margin:0 16px 20px;border-top:2px solid var(--r);padding-top:12px}
+.debates-title{font-size:20px;color:var(--r);margin-bottom:14px}
+.debates-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.debates-scroll::-webkit-scrollbar{display:none}
+.debate-card{flex:0 0 200px;background:#d4ecf7;border-radius:12px;padding:16px;text-align:center}
+.debate-avatar{width:60px;height:60px;border-radius:50%;background:#b8d8e8;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#666}
+.debate-host-label{font-size:11px;color:#555;margin-bottom:2px}
+.debate-host-name{font-size:13px;color:var(--r);font-weight:500;margin-bottom:8px}
+.debate-question{font-size:14px;font-weight:600;line-height:1.35;color:#000;margin-bottom:10px}
+.debate-cta{display:inline-block;background:transparent;color:var(--r);border:1.5px solid var(--r);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;text-decoration:none;margin-bottom:8px}
+.debate-reactions{font-size:12px;color:#666;display:flex;align-items:center;justify-content:center;gap:10px}
+
+/* Article list */
+.article-list-section{margin:16px 16px 0;border-top:2px solid var(--r);padding-top:12px}
+.article-list-title{font-size:20px;color:var(--r);margin-bottom:16px}
+.article-list-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;text-decoration:none;color:inherit}
+.article-list-item-text{flex:1;display:flex;flex-direction:column;gap:3px}
+.article-list-teil{font-size:15px;color:var(--r)}
+.article-list-teil.is-current{font-weight:700}
+.article-list-teil.is-upcoming{color:var(--rl)}
+.article-list-headline{font-size:17px;font-weight:500;line-height:1.35;color:#000}
+.article-list-headline.is-upcoming{color:var(--g)}
+.article-list-date{font-size:12px;color:#000}
+.article-list-thumb{width:75px;height:75px;object-fit:cover;flex-shrink:0;background:#eee}
+.article-list-thumb.is-upcoming{opacity:.4}
+
+.list-follow-block{padding:16px 16px 20px;display:flex;flex-direction:column;gap:10px}
+.list-follow-text{font-family:Georgia,'Noto Serif',serif;font-size:18px;line-height:1.5;color:#000}
+
+.bottom-teaser{margin:8px 16px;border-top:2px solid var(--r);padding-top:12px}
+.bottom-teaser-title{font-size:20px;color:var(--r);margin-bottom:14px}
+.bottom-teaser p{font-size:13px;line-height:1.6;color:var(--bk)}
+.bottom-teaser a{color:var(--r);text-decoration:underline}
+.jti-row{display:flex;gap:8px;align-items:flex-start}
+</style>
+</head>
+<body>
+
+<div class="topbar">The Swiss voice in the world since 1935</div>
+<div class="hdr">
+  <div class="hdr-l">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <div style="display:flex;align-items:center;gap:6px"><span class="logo-box">SWI</span><span class="logo-text">swissinfo.ch</span></div>
+  </div>
+  <div class="hdr-r">
+    <div class="lang">DE</div>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+  </div>
+</div>
+<div class="nav"><a href="#">GEOPOLITIK</a><a href="#">DEMOKRATIE</a><a href="#">WISSENSCHAFT</a><a href="#">GESELLSC…</a></div>
+<div class="breadcrumb"><a href="serien-uebersicht.html">Alle Serien</a> › <a href="#">Gletscher und Permafrost</a> ›</div>
+
+<div class="series-label-bar">
+  <span class="badge">Serie</span>
+  <span class="series-name-inline">Gletscher der Welt</span>
+  <span class="teil-separator">·</span>
+  <span class="teil-inline">Teil 1</span>
+</div>
+<h1 class="article-title">Nepal und der Himalaya: vom Leiden der Gletscher auf dem Dach der Welt</h1>
+
+<img class="hero-image" src="https://www.figma.com/api/mcp/asset/c64adbf4-8547-4e1b-b37c-94e89b45e37e" alt="Nepal Himalaya Gletscher">
+<div class="hero-lead">Das Abschmelzen der Gletscher im Himalaya erhöht das Risiko katastrophaler Überschwemmungen und verringert die Süsswasserressourcen für fast zwei Milliarden Menschen. Die Herausforderungen in Bezug auf die Klimaanpassung in einem armen Land wie Nepal sind gewaltig.</div>
+
+<div class="action-buttons">
+  <button class="action-btn">Merken <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="14"/><line x1="9" y1="11" x2="15" y2="11"/></svg></button>
+  <button class="action-btn">Teilen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></button>
+  <button class="follow-btn" style="font-size:16px;padding:8px 14px 8px 18px;" onclick="toggleFollow(this)">Serie folgen <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+</div>
+
+<div class="article-meta">
+  <span>20. April 2025 - 10:00</span>
+  <div class="article-meta-right">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    8 Minuten
+  </div>
+</div>
+<div class="meta-row">
+  <div class="meta-row-left">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.12a8.25 8.25 0 0115 0"/></svg>
+    Luigi Jorio
+  </div>
+  <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+</div>
+<div class="meta-row">
+  <div class="meta-row-left">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+    Weitere Sprachen: 6
+  </div>
+  <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+</div>
+
+<!-- V1: Expandable series navigation in meta area -->
+<div class="meta-row-expandable is-closed" id="seriesNav">
+  <div class="meta-row-trigger" onclick="document.getElementById('seriesNav').classList.toggle('is-open');document.getElementById('seriesNav').classList.toggle('is-closed');">
+    <div class="meta-row-trigger-left">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Teile dieser Serie: 5
+    </div>
+    <svg class="chevron-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="expand-content">
+    <div class="expand-label">Sie lesen gerade:</div>
+    <ul class="expand-list">
+      <li class="is-current"><span class="li-arrow">›</span> Teil 1 • Nepal und der Himalaya: vom Leiden der Gletscher auf dem Dach der Welt</li>
+      <li><span class="li-arrow">›</span> <a href="gletscher-artikelseite-v2.html">Teil 2 • Südamerikas tropische Gletscher sind ein bedrohtes Kulturerbe</a></li>
+      <li><span class="li-arrow">›</span> <a href="#">Teil 3 • Gletscherfriedhof Island</a></li>
+      <li><span class="li-arrow">›</span> <a href="#">Teil 4 • Die letzten Gletscher Ostafrikas sind angezählt</a></li>
+      <li><span class="li-arrow">›</span> <a href="#">Teil 5 • Die Alpengletscher schmelzen auch an den höchsten Gipfeln</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="article-body">
+  <p>Mit 8848 Metern ist der Mount Everest der höchste Berg der Erde. Diese Höhe schützt den Berg jedoch nicht vor den Auswirkungen des Klimawandels. Die Gletscher in der Himalaya-Region schmelzen in alarmierendem Tempo.</p>
+  <p>Laut dem International Centre for Integrated Mountain Development (ICIMOD) haben die Gletscher der Hindu-Kush-Himalaya-Region seit den 1970er-Jahren etwa ein Drittel ihrer Masse verloren.</p>
+  <p>Die Konsequenzen sind weitreichend: Gletscherseeausbrüche bedrohen Dörfer, die Wasserversorgung wird unberechenbar, und traditionelle Lebensweisen geraten unter Druck.</p>
+</div>
+
+<!-- V1: Simple collapsible series teaser (no swipe) -->
+<div class="series-teaser-simple is-closed" id="seriesTeaser">
+  <div class="series-teaser-simple-trigger" onclick="document.getElementById('seriesTeaser').classList.toggle('is-open');document.getElementById('seriesTeaser').classList.toggle('is-closed');">
+    <div class="series-teaser-simple-trigger-left">
+      <div class="series-teaser-simple-title">Gletscher der Welt</div>
+      <div class="series-teaser-simple-subtitle">Lokaler Rückgang und globale Auswirkungen</div>
+    </div>
+    <svg class="chevron-toggle2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="series-teaser-simple-body">
+    <p>Der <a href="#">World Glacier Monitoring Service (WGMS)</a> sammelt und analysiert Daten zu Massenbilanz, Volumen, Ausdehnung und Länge der Gletscher auf der ganzen Erde. Dieser Dienst wurde 1986 gegründet und hat seinen Sitz an der Universität Zürich.</p>
+    <p>Der WGMS verfügt über ein Netz von nationalen Korrespondentinnen und Korrespondenten in mehr als 40 Ländern.</p>
+    <p>Anlässlich des Internationalen Jahres zum Schutz der Gletscher hat SWI swissinfo einige von ihnen kontaktiert, um sich über den Zustand der Gletscher in ihrer Region, die Folgen der Eisschmelze und Anpassungsstrategien zu informieren.</p>
+    <a href="serie-gletscher.html">Zur Serienübersicht</a>
+  </div>
+</div>
+
+<!-- More article body -->
+<div class="article-body">
+  <p>Die Vereinten Nationen haben 2025 zum Internationalen Jahr der Gletschererhaltung erklärt – ein Signal, das in Nepal auf grosse Resonanz stösst. Doch für die Bewohner:innen der Bergtäler reichen Symbole nicht aus.</p>
+  <p>«Wir können den Klimawandel nicht allein aufhalten», sagt Pemba Dorji, ein Sherpa und Bergführer aus der Khumbu-Region. «Aber wir können lernen, uns anzupassen – wenn uns die Welt dabei unterstützt.»</p>
+  <p>Im Herzen des Himalaya vollzieht sich ein stiller, aber dramatischer Wandel. Die Gletscher, die seit Jahrtausenden die Wasserversorgung sichern, schmelzen mit beispielloser Geschwindigkeit.</p>
+  <p>Und er fügt an: «Ich hoffe, dass das Internationale Jahr zum Schutz der Gletscher einen positiven Beitrag zu diesen Bemühungen leisten wird.»</p>
+</div>
+
+<!-- Editiert von -->
+<div class="editiert-von">Editiert von Gabe Bullard. Übertragung aus dem Italienischen: Gerhard Lob</div>
+<div style="padding:0 16px 16px;font-size:14px;color:#333"><strong>Fehler gefunden?</strong> <a href="mailto:german@swissinfo.ch?subject=Fehlermeldung%20Artikel%3A%20Nepal%20und%20der%20Himalaya%3A%20vom%20Leiden%20der%20Gletscher%20auf%20dem%20Dach%20der%20Welt&body=Bitte%20Fehler%20beschreiben%3A%0A%0A%0A%0A---%0Ahttps%3A%2F%2Fwww.swissinfo.ch%2Fger%2Fgletscher-nepal-himalaya" style="color:#af001d;text-decoration:underline;font-weight:500">Jetzt melden</a></div>
+
+<!-- SWIplus App Teaser -->
+<div class="app-teaser">
+  <div class="app-teaser-text">Relevant und aktuell: Die SWIplus App bringt Ihnen die wichtigsten Informationen und Nachrichten aus der Schweiz. <a href="#">Jetzt herunterladen!</a></div>
+  <div class="app-teaser-banner">
+    <div class="app-teaser-banner-text">
+      <div class="app-title">Neu in der SWIplus App</div>
+      <div class="app-desc">Gestalten Sie Ihren persönlichen mehrsprachigen Nachrichten-Feed</div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <div style="background:rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-size:10px;">App Store</div>
+        <div style="background:rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-size:10px;">Google Play</div>
+      </div>
+    </div>
+    <div class="app-teaser-phone">📱</div>
+  </div>
+</div>
+
+<!-- Teile dieser Serie -->
+<div class="article-list-section">
+  <div class="article-list-title">Teile dieser Serie</div>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil is-current">Sie lesen gerade: Teil 1</span><span class="article-list-headline">Nepal und der Himalaya: vom Leiden der Gletscher auf dem Dach der Welt</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#6a9fb5,#c8dde6);"></div></a>
+  <a class="article-list-item" href="gletscher-artikelseite-v2.html"><div class="article-list-item-text"><span class="article-list-teil">Teil 2</span><span class="article-list-headline">Südamerikas tropische Gletscher sind ein bedrohtes Kulturerbe</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#3d7a4f,#7ab88a);"></div></a>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil">Teil 3</span><span class="article-list-headline">Gletscherfriedhof Island</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#2c3e50,#5a7d9a);"></div></a>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil">Teil 4</span><span class="article-list-headline">Die letzten Gletscher Ostafrikas sind angezählt</span><span class="article-list-date">01.04.2026</span></div><div class="article-list-thumb" style="background:linear-gradient(135deg,#8B4513,#D2691E);"></div></a>
+  <a class="article-list-item" href="#"><div class="article-list-item-text"><span class="article-list-teil is-upcoming">Teil 5</span><span class="article-list-headline is-upcoming">Die Alpengletscher schmelzen auch an den höchsten Gipfeln</span><span class="article-list-date">Artikel erscheint demnächst...</span></div><div class="article-list-thumb is-upcoming" style="background:linear-gradient(135deg,#94a3b8,#cbd5e1);"></div></a>
+</div>
+
+<!-- Follow CTA below article list -->
+<div class="list-follow-block">
+  <div style="height:1px;background:#ddd;margin-bottom:8px"></div>
+  <button class="follow-btn" id="followBtn2" onclick="toggleFollow(this)">Serie folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+</div>
+
+<!-- Bottom teasers -->
+<div class="bottom-teaser">
+  <div class="bottom-teaser-title">Diskutieren Sie mit!</div>
+  <p>Besuchen Sie unsere <a href="#">laufenden Debatten mit SWI-Journalist:innen.</a> Tauschen Sie sich mit unserer Community zu aktuellen Themen aus.</p>
+</div>
+
+<!-- Mehr lesen -->
+<div style="margin:20px 16px 0;border-top:2px solid var(--r);padding-top:12px">
+  <div style="font-size:16px;color:var(--r);margin-bottom:12px">Mehr lesen</div>
+  <div style="display:flex;gap:10px">
+    <div style="flex:1">
+      <div style="width:100%;aspect-ratio:1/0.7;background:linear-gradient(135deg,#6a9fb5,#c8dde6);margin-bottom:6px"></div>
+      <div style="font-size:14px;font-weight:600;line-height:1.3;color:#000;margin-bottom:4px">Mit der weltweiten Gletscherschmelze wird das Monitoring der Schweiz immer wichtiger</div>
+      <div style="font-size:12px;color:#666;line-height:1.4">21. März 2025 • Überall auf der Welt schmelzen die Gletscher immer schneller.</div>
+    </div>
+    <div style="flex:1">
+      <div style="width:100%;aspect-ratio:1/0.7;background:linear-gradient(135deg,#8B7355,#C4A882);margin-bottom:6px"></div>
+      <div style="font-size:14px;font-weight:600;line-height:1.3;color:#000;margin-bottom:4px">1,2 Millionen Eiswürfel birgt für grösstes Klimageschichte</div>
+      <div style="font-size:12px;color:#666;line-height:1.4">10. Jan. 2025 • Forschende haben die älteste Eisprobe entnommen.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Beliebte Artikel -->
+<div class="popular-section">
+  <div class="popular-title">Beliebte Artikel</div>
+  <a class="popular-item" href="#"><div class="popular-item-text"><div class="popular-item-headline">Bargeld für Mäuseschwänze – stirbt diese Schweizer Tradition aus?</div></div><div class="popular-item-thumb" style="background:linear-gradient(135deg,#8B7355,#C4A882);"></div></a>
+  <a class="popular-item" href="#"><div class="popular-item-text"><div class="popular-item-cat">Schweizer Diplomatie</div><div class="popular-item-headline">Iran: Die Gewaltseskalation wird für die politische Schweiz zur Charakterprobe</div></div><div class="popular-item-thumb" style="background:linear-gradient(135deg,#2c3e50,#4a6d8c);"></div></a>
+  <a class="popular-item" href="#"><div class="popular-item-text"><div class="popular-item-cat">Schweizer Politik</div><div class="popular-item-headline">Schwache Armee: Warum die Schweiz mit ihrer Verteidigung hadert</div></div><div class="popular-item-thumb" style="background:linear-gradient(135deg,#556B2F,#8FBC8F);"></div></a>
+  <a class="popular-item" href="#"><div class="popular-item-text"><div class="popular-item-cat">Swiss Abroad</div><div class="popular-item-headline">Verunsicherung unter Auslandschweizern am Golf</div></div><div class="popular-item-thumb" style="background:linear-gradient(135deg,#B8860B,#DAA520);"></div></a>
+  <a class="popular-item" href="#"><div class="popular-item-text"><div class="popular-item-cat">Aussenpolitik</div><div class="popular-item-headline">Der Iran und die Schweiz: eine spezielle Beziehung</div></div><div class="popular-item-thumb" style="background:linear-gradient(135deg,#c41a1a,#fff);"></div></a>
+</div>
+
+<!-- Meistdiskutiert -->
+<div class="debates-section">
+  <div class="debates-title">Meistdiskutiert</div>
+  <div class="debates-scroll">
+    <div class="debate-card">
+      <div class="debate-avatar">👤</div>
+      <div class="debate-host-label">Gastgeber/Gastgeberin</div>
+      <div class="debate-host-name">Katy Romy</div>
+      <div class="debate-question">Online-Stimmen der Auslandschweizer:innen in Basel-Stadt nicht gezählt: Schwächt das Ihr Vertrauen ins E-Voting?</div>
+      <a class="debate-cta" href="#">Nehmen Sie an der Diskussion teil</a>
+      <div class="debate-reactions">👍 2 &nbsp; 💬 12</div>
+    </div>
+    <div class="debate-card">
+      <div class="debate-avatar">👤</div>
+      <div class="debate-host-label">Gastgeber</div>
+      <div class="debate-host-name">Benjamin von Wyl</div>
+      <div class="debate-question">Welche Erfahrungen haben Sie mit Landessprachen bei Volksabstimmungen gemacht?</div>
+      <a class="debate-cta" href="#">Nehmen Sie an der Diskussion teil</a>
+      <div class="debate-reactions">👍 2 &nbsp; 💬 8</div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:16px;display:flex;justify-content:flex-start">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+</div>
+
+<!-- Footer -->
+<div style="border-top:1px solid #e0e0e0;padding:20px 16px">
+  <div style="margin-bottom:20px">
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Impressum</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Datenschutzerklärung</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Nutzungsbedingungen</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Rechte an Inhalten und Haftung</a>
+  </div>
+  <div style="margin-bottom:20px">
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Offene Stellen</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Über uns</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Jahresbericht 2024</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Public Value</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">Kontakt</a>
+    <a href="#" style="display:flex;align-items:center;gap:8px;font-size:14px;color:#333;text-decoration:none;padding:8px 0;border-bottom:1px solid #f0f0f0">
+      <svg viewBox="0 0 120 55" width="40" height="18" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0"><text x="0" y="42" font-family="'Arial Black',Arial,sans-serif" font-size="52" font-weight="900" fill="#1b2e4a" letter-spacing="-2">jti</text><rect x="75" y="4" width="38" height="38" rx="3" fill="#7fb5d5"/><path d="M83 24 L92 33 L107 15" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>JTI-zertifiziert · <span style="color:#888">Warum Sie uns vertrauen können</span></span>
+    </a>
+  </div>
+  <div style="font-size:13px;color:#555;margin-bottom:12px">Folgen Sie uns</div>
+  <div style="display:flex;gap:14px;margin-bottom:24px">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#333"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#333"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#333"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 4-8 4z"/></svg>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#333"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+  </div>
+  <div style="font-size:13px;color:#555;line-height:1.5;margin-bottom:16px">Täglich informiert mit unserem Briefing auf SWI plus, der App für Auslandschweizerinnen und Auslandschweizer.</div>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+    <div style="background:#000;color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;display:inline-flex;align-items:center;gap:8px;width:fit-content">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+      <div><div style="font-size:10px;opacity:.7">Laden im</div><div style="font-weight:600">App Store</div></div>
+    </div>
+    <div style="background:#000;color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;display:inline-flex;align-items:center;gap:8px;width:fit-content">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 010 1.732l-2.807 1.627L15.206 12l2.492-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+      <div><div style="font-size:10px;opacity:.7">JETZT BEI</div><div style="font-weight:600">Google Play</div></div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:#555;line-height:1.5;margin-bottom:16px">SWI swissinfo.ch - Zweigniederlassung der Schweizerischen Radio- und Fernsehgesellschaft</div>
+  <div style="font-weight:800;font-size:18px;color:#333;letter-spacing:1px;margin-bottom:20px">SRG SSR</div>
+  <div style="border-top:1px solid #e0e0e0;padding-top:16px">
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:6px 0">RTS</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:6px 0">SRF</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:6px 0">RSI</a>
+    <a href="#" style="display:block;font-size:14px;color:#333;text-decoration:none;padding:6px 0">RTR</a>
+  </div>
+</div>
+
+<script>
+function toggleFollow(btn){
+  const f=btn.classList.toggle('is-following');
+  btn.innerHTML=f
+    ?'Gefolgt <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="10" fill="#af001d"/><path d="M7 12.5l3.5 3.5 6.5-7" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    :'Serie folgen <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  document.querySelectorAll('.follow-btn').forEach(b=>{if(b!==btn){b.className=btn.className;b.innerHTML=btn.innerHTML}});
+}
+</script>
+</body>
+</html>
